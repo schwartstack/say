@@ -2,6 +2,9 @@ say<-function(n){
   if(n==0){
     return("zero")
   }else{
+    if(grepl("e",n)){
+      n=as.integer(n)
+    }
     if(n<0){
       string="negative"
       n=-1*n
@@ -12,7 +15,7 @@ say<-function(n){
     tens=c("ten","twenty","thirty","fourty","fifty","sixty","seventy","eighty","ninety")
     ones=c("one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen")
     
-    s=as.character(as.integer(n))
+    s=as.character(n)
     v=strsplit(s,"")[[1]]
     v=as.numeric(v)
     
