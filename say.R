@@ -12,7 +12,7 @@ say<-function(n){
     tens=c("ten","twenty","thirty","fourty","fifty","sixty","seventy","eighty","ninety")
     ones=c("one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen")
     
-    s=as.character(n)
+    s=as.character(as.integer(n))
     v=strsplit(s,"")[[1]]
     v=as.numeric(v)
     
@@ -29,11 +29,18 @@ say<-function(n){
       }
       if(m[r,2]>1){
         string=paste(string,tens[m[r,2]],ones[m[r,3]])
+        string=paste(trimws(string),rev(scale[1:nrow(m)])[r])
+      }else if(m[r,2]==0&&m[r,3]==0){
+        if(m[r,1]>0){
+        string=paste(trimws(string),rev(scale[1:nrow(m)])[r])
+        }
       }else{
         string=paste(string,ones[10*m[r,2]+m[r,3]])
+        string=paste(trimws(string),rev(scale[1:nrow(m)])[r])
       }
-      string=paste(string,rev(scale[1:nrow(m)])[r])
+      
     }
     return(trimws(string))
   }
+  
 }
